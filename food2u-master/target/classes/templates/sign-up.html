@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="https://thymeleaf.org">
+
+<head th:replace="fragments/general :: head"></head>
+
+<body class="d-flex flex-column h-100">
+    <main role="main" class="flex-shrink-0">
+        <header th:replace="fragments/general :: header"></header>
+
+        <section id="main-content">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-auto col-md-auto col-sm-auto form-col">
+                        <h3 class="sign-in-header">Sign up for a new account</h3>
+                        <form class="lusu-form" id="sign-up" th:action="@{/sign-up}" th:object="${newUserForm}" method="post">
+                            <p class="form-error" th:inline="text" th:if="${!newUserForm.passwordsMatch}">
+                                Both passwords must match.
+                            </p>
+                            <ul class="form-error" th:if="${#fields.hasErrors('*')}">
+                                <li th:if="${#fields.hasErrors('email')}">Email is too short.</li>
+                                <li th:if="${#fields.hasErrors('password')}">Password is too short.</li>
+                                <li th:if="${#fields.hasErrors('password2')}">Password is too short.</li>
+                            </ul>
+                            <div class="form-row">
+                                <div class="form-group col-md-5 col-sm-5">
+                                    <label for="inputFirstName">First Name</label>
+                                    <input type="text" class="form-control" id="inputFirstName" th:field="*{firstName}"
+                                           required>
+                                </div>
+                                <div class="form-group col-md-5 col-sm-5">
+                                    <label for="inputLastName">LastName</label>
+                                    <input type="text" class="form-control" id="inputLastName" th:field="*{lastName}"
+                                           required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="inputEmail4">Email</label>
+                                    <input type="email" class="form-control" id="inputEmail4" th:field="*{email}"
+                                        pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="inputPassword1"
+                                        th:field="*{password}" required minlength="6" maxlength="30"
+                                        pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputPassword2">Re-Enter Password</label>
+                                    <input type="password" class="form-control" id="inputPassword2"
+                                           th:field="*{password2}" required minlength="6" maxlength="30"
+                                        pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-md-3 col-sm-3">
+                                    <label for="inputState">State</label>
+                                    <select id="inputState" class="form-control" th:field="*{state}" required>
+                                        <option value="">Please Select</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District Of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-5 col-sm-5">
+                                        <label for="inputCity">City</label>
+                                        <input type="text" class="form-control" id="inputCity" th:field="*{city}" required>
+                                    </div>
+                                </div>
+                                <label for="inputAddress">Address</label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="Mangilek el C1"
+                                    th:field="*{address}" required>
+                            </div>
+                            <button type="submit" id="submitButton" class="btn btn-dark submit-button">Sign
+                                up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="fragments/general :: footer">
+
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+    <script th:src="@{scripts/scripts.js}"></script>
+</body>
+
+</html>

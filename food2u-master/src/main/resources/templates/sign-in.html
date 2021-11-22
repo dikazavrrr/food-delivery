@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="https://thymeleaf.org">
+
+<head th:replace="fragments/general :: head"></head>
+
+<body class="d-flex flex-column h-100">
+    <main role="main" class="flex-shrink-0">
+
+        <header th:replace="fragments/general :: header"></header>
+
+        <section id="main-content">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-auto col-md-auto col-sm-auto form-col sign-in-div">
+                        <h3 class="sign-in-header">Sign in to your account</h3>
+                        <form class="lusu-form" id="sign-in" th:action="@{/sign-in}" th:object="${returningUser}" method="post">
+                            <p class="form-error" th:inline="text" th:if="${returningUser.alreadyExists}">
+                                Account with email [[${returningUserForm.email}]] already exists. Please sign in.
+                            </p>
+                            <p class="form-error" th:inline="text" th:if="${param.error}">
+                                The username and password combination entered returned no results. Please try again.
+                            </p>
+                            <p class="form-error" th:inline="text" th:if="${param.logout}">
+                                You have been logged out.
+                            </p>
+                            <div class="form-group">
+                                <remember-me
+                                <label for="inputEmail">Email address</label>
+                                <input type="email" name="username" class="form-control" id="inputEmail"
+                                    th:field="*{username}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword">Password</label>
+                                <input type="password" name="password" class="form-control" id="inputPassword"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label class="remember" for="remember-me">Remember Me</label>
+                                <input type="checkbox" name="remember-me" id="remember-me">
+                            </div>
+                            <div class="submit-box">
+                                <button type="submit" class="btn btn-dark submit-button">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="fragments/general :: footer"></footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="https://thymeleaf.org">
+
+<head th:replace="fragments/general :: head"></head>
+
+<body class="d-flex flex-column h-100">
+    <main role="main" class="flex-shrink-0">
+
+        <header th:replace="fragments/general_welcome :: header"></header>
+
+        <section id="main-content">
+            <div class="jumbotron jumbotron-fluid jumbotron-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 th:inline="text">Welcome, [[${user.firstName}]]!</h1>
+                            <h3 class="jumbotron-subheader">Feeling Hungry?</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="featured-restaurants">
+            <div class="container card-container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 card-main d-flex">
+                        <div class="card card-about">
+                            <img th:src="@{images/burgerking.png}" src="../static/images/burgerking.png"
+                                 class="card-img-top card-image" alt="burger-king-image">
+                            <div class="card-body">
+                                <h5 class="card-title">How about this?</h5>
+                                <p class="card-text">Is this what you're looking for?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 card-main d-flex">
+                        <div class="card card-about">
+                            <img th:src="@{images/mcdonalds.png}" src="../static/images/mcdonalds.png"
+                                 class="card-img-top card-image" alt="mcdonalds-image">
+                            <div class="card-body">
+                                <h5 class="card-title">...Or this?...</h5>
+                                <p class="card-text">Go ahead, place an order, I know you want to...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer th:fragment="footer" id="footer" class="footer mt-auto py-3">
+        <div class="container">
+            <p>&#169; 2020 Timothy Jonker</p>
+        </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
